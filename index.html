@@ -1,1 +1,121 @@
-honk!
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Honk.ci</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <meta charset="utf-8" />
+    <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+    <link rel="stylesheet" href="style.css" />
+    <script src="libs/jquery.js"></script>
+    <script src="libs/jquery-ui.js"></script>
+    <script src="libs/shake.js"></script>
+    <script>
+      var shakeEvent = new Shake({threshold: 15});
+      shakeEvent.start();
+      window.addEventListener('shake', function(){
+          $( "#bell" ).effect({effect: "shake", distance: 400, times: 5, direction: "left" });
+          $("#to-do-list").effect({effect: "shake", distance: 50, times: 5, direction: "right"});
+      }, false);
+
+      var timestamp = 0;
+      var previousCursorPositionY = 0;
+      var previousCursorPositionX = 0;
+      var previousTriggerTime = 0;
+      $(document).mousemove(function(e) {
+          var now = Date.now();
+          var currentCursorPositionY = e.screenY;
+          var currentCursorPositionX = e.screenX;
+          var xDistance = Math.abs(currentCursorPositionX - previousCursorPositionX);
+          var yDistance = Math.abs(currentCursorPositionY - previousCursorPositionY);
+          var distance = Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2))
+          var deltaTime = now - timestamp;
+          var speed = Math.round(distance / deltaTime);
+          if (speed > 15 && (now - previousTriggerTime) > 3000) {
+            trigger = Date.now();
+            $( "#bell" ).effect({effect: "shake", distance: 400, times: 5, direction: "left" });
+            $("#to-do-list").effect({effect: "shake", distance: 50, times: 5, direction: "right"});
+          }
+          previousCursorPositionY = currentCursorPositionY;
+           previousCursorPositionX = currentCursorPositionX;
+          timestamp = now;
+        });
+    </script>
+  </head>
+  <body>
+    <main>
+      <section id="to-do-list">
+        <heading class="to-do-heading"><b>to do:</b></heading>
+        <div id="bell"><img src="assets/bell.png"></div>
+        <div class="to-do-items">
+          <div class="item">
+            <input type="checkbox" id="item1" checked/>
+            <label for="item1"></label>
+            <span>Become a contributor.</span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item2" checked />
+            <label for="item2"></label>
+            <span>Become a member.</span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item3" checked/>
+            <label for="item3"></label>
+            <span>Goto contributor summit.</span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item4" />
+            <label for="item4"></label>
+            <span>Find <a href="https://twitter.com/jeefy">@jeefy</a> or <a href="https://twitter.com/mrbobbytables">@mrbobbytables</a>. <b>Honk</b> at them for a prize!</span>
+          </div>
+          <div class="item">
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item6" />
+            <label for="item6"></label>
+            <span>Be one of the <b>first of 3</b> to tell them what triggers <b>Goose Honkin</b> to honk for a bonus prize!</span>
+          </div>
+          <div class="item">
+          </div>
+          <div class="item">
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item9" checked/>
+            <label for="item9"></label>
+            <span>Rake in the lake</span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item10" />
+            <label for="item10"></label>
+            <span>Be the first to find the hidden bell for the <b>GRAND PRIZE.</b></span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item11" />
+            <label for="item11"></label>
+            <span contenteditable></span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item12" />
+            <label for="item12"></label>
+            <span contenteditable></span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item13" />
+            <label for="item13"></label>
+            <span>Shake device in frustration. :)</span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item14" />
+            <label for="item14"></label>
+            <span contenteditable></span>
+          </div>
+          <div class="item">
+            <input type="checkbox" id="item15" />
+            <label for="item15"></label>
+            <span contenteditable></span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
