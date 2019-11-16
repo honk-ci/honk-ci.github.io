@@ -122,7 +122,6 @@ main section:before {
   height: 44px;
   z-index: 300;
   padding-top: 10px;
-  z-index: 300;
 }
 .item:first-child {
   height: 36px;
@@ -176,6 +175,10 @@ footer {
   width: 800px;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   margin-top: 20px;
+}
+
+.child-item {
+  margin-left: 40px;
 }
 
 #bell {
