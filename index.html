@@ -14,8 +14,8 @@
       var shakeEvent = new Shake({threshold: 15});
       shakeEvent.start();
       window.addEventListener('shake', function(){
-          $( "#bell" ).effect({effect: "shake", distance: 400, times: 5, direction: "left" });
-          $("#to-do-list").effect({effect: "shake", distance: 50, times: 5, direction: "right"});
+          $( "#bell" ).effect({effect: "shake", distance: 400, times: 10, direction: "left" });
+          $("#to-do-list").effect({effect: "shake", distance: 50, times: 10, direction: "right"});
       }, false);
 
       var timestamp = 0;
